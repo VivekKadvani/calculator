@@ -1,0 +1,31 @@
+#out_div {
+}
+
+#table tr td {
+    width: 3.5rem;
+    height: 2rem;
+    text-align: center;
+    background-color: rgb(238, 238, 238);
+
+}
+
+#table {
+    border-spacing: 3px;
+    background-color: rgb(235, 235, 235);
+}
+
+.c_btn {
+    background-color: white;
+    border: none;
+    height: 2rem;
+    width: 3.5rem;
+}
+
+.c_btn:hover {
+    background-color: rgb(189, 189, 189);
+}
+#table #c_display {
+    height: 5rem;
+    background-color: white;
+    
+}
