@@ -1,20 +1,20 @@
 const deg = document.getElementById("c_btn_deg");
 const f_e = document.getElementById("c_btn_f_e");
-const MC = document.getElementById("c_btn_MC");
-const MR = document.getElementById("c_btn_MR");
-const m_plus = document.getElementById("c_btn_m_plus");
-const m_min = document.getElementById("c_btn_m_min");
-const MS = document.getElementById("c_btn_MS");
+/*done*/const MC = document.getElementById("c_btn_MC");
+/*done*/const MR = document.getElementById("c_btn_MR");
+/*done*/const m_plus = document.getElementById("c_btn_m_plus");
+/*done*/const m_min = document.getElementById("c_btn_m_min");
+/*done*/const MS = document.getElementById("c_btn_MS");
 const btn_2nd = document.getElementById("c_btn_2nd");
-const pie = document.getElementById("c_btn_pie");
-const e = document.getElementById("c_btn_e");
-const X_r_2 = document.getElementById("c_btn_x_r_2");
-const btn_1dx = document.getElementById("c_btn_1dx");
+/*done*/const pie = document.getElementById("c_btn_pie");
+/*done*/const e = document.getElementById("c_btn_e");
+/*done*/const X_r_2 = document.getElementById("c_btn_x_r_2");
+/*done*/const btn_1dx = document.getElementById("c_btn_1dx");
 /*done*/const modulo = document.getElementById("c_btn_modulo");
-const exp = document.getElementById("c_btn_exp");
+/*done*/const exp = document.getElementById("c_btn_exp");
 const sqroot = document.getElementById("c_btn_sqroot");
-const start_braket = document.getElementById("c_btn_start_braket");
-const end_braket = document.getElementById("c_btn_end_braket");
+/*done*/const start_braket = document.getElementById("c_btn_start_braket");
+/*done*/const end_braket = document.getElementById("c_btn_end_braket");
 const nnot = document.getElementById("c_btn_nnot");
 const x_raise_y = document.getElementById("c_btn_x_raise_y");
 const btn_10_r_x = document.getElementById("c_btn_10_r_x");
@@ -58,7 +58,50 @@ c_btn_dot.addEventListener("click", () => { add(".") })
 c_btn_mod.addEventListener("click", () => { add("%") })
 c_btn_plusminus.addEventListener("click", () => { add("-") })
 modulo.addEventListener("click", () => { add("|") })
+pie.addEventListener("click", () => { add("3.14") })
+X_r_2.addEventListener("click", () => { add("**2") })
+btn_1dx.addEventListener("click", () => { add("**-1") })
+e.addEventListener("click", () => { add("2.718281828") })
+exp.addEventListener("click", () => { 
+    let temp = display.innerHTML;
+    clear()
 
+    add("2.718281828**"+temp) 
+})
+
+start_braket.addEventListener("click", () => { add("(") })
+end_braket.addEventListener("click", () => { add(")") })
+
+
+
+//handling localstorage
+localStorage.setItem("val",0);
+//M method
+
+m_plus.addEventListener("click",()=>{
+    let l_val=localStorage.getItem("val")
+    let f_val=eval(l_val+"+"+display.innerHTML)
+    console.log(f_val)
+    localStorage.setItem("val",f_val)
+})
+m_min.addEventListener("click",()=>{
+    let l_val=localStorage.getItem("val")
+    let f_val=eval(l_val+"-"+display.innerHTML)
+    console.log(f_val)
+    localStorage.setItem("val",f_val)
+})
+MR.addEventListener("click",()=>{
+    let l_val=localStorage.getItem("val")
+    display.innerHTML=l_val;
+})
+MC.addEventListener("click",()=>{
+    localStorage.setItem("val",0)
+
+})
+MS.addEventListener("click",()=>{
+    localStorage.setItem("val",display.innerHTML)
+
+})
 //operator 
 c_btn_plus.addEventListener("click", () => { add("+") })
 c_btn_subtract.addEventListener("click", () => { add("-") })
