@@ -53,6 +53,17 @@ btn_8.addEventListener("click", () => { add(8) })
 btn_9.addEventListener("click", () => { add(9) })
 btn_0.addEventListener("click", () => { add(0) })
 
+//mode change
+deg.innerHTML = "DEG"
+deg.addEventListener("click", () => {
+    if(deg.innerHTML=="DEG")
+        deg.innerHTML = "RAD"
+    else if (deg.innerHTML == "RAD")
+        deg.innerHTML = "DEG";
+    
+})
+
+
 //other
 c_btn_dot.addEventListener("click", () => { add(".") })
 c_btn_mod.addEventListener("click", () => { add("%") })
@@ -62,11 +73,11 @@ pie.addEventListener("click", () => { add("3.14") })
 X_r_2.addEventListener("click", () => { add("**2") })
 btn_1dx.addEventListener("click", () => { add("**-1") })
 e.addEventListener("click", () => { add("2.718281828") })
-exp.addEventListener("click", () => { 
+exp.addEventListener("click", () => {
     let temp = display.innerHTML;
     clear()
 
-    add("2.718281828**"+temp) 
+    add("2.718281828**" + temp)
 })
 
 start_braket.addEventListener("click", () => { add("(") })
@@ -75,31 +86,31 @@ end_braket.addEventListener("click", () => { add(")") })
 
 
 //handling localstorage
-localStorage.setItem("val",0);
+localStorage.setItem("val", 0);
 //M method
 
-m_plus.addEventListener("click",()=>{
-    let l_val=localStorage.getItem("val")
-    let f_val=eval(l_val+"+"+display.innerHTML)
+m_plus.addEventListener("click", () => {
+    let l_val = localStorage.getItem("val")
+    let f_val = eval(l_val + "+" + display.innerHTML)
     console.log(f_val)
-    localStorage.setItem("val",f_val)
+    localStorage.setItem("val", f_val)
 })
-m_min.addEventListener("click",()=>{
-    let l_val=localStorage.getItem("val")
-    let f_val=eval(l_val+"-"+display.innerHTML)
+m_min.addEventListener("click", () => {
+    let l_val = localStorage.getItem("val")
+    let f_val = eval(l_val + "-" + display.innerHTML)
     console.log(f_val)
-    localStorage.setItem("val",f_val)
+    localStorage.setItem("val", f_val)
 })
-MR.addEventListener("click",()=>{
-    let l_val=localStorage.getItem("val")
-    display.innerHTML=l_val;
+MR.addEventListener("click", () => {
+    let l_val = localStorage.getItem("val")
+    display.innerHTML = l_val;
 })
-MC.addEventListener("click",()=>{
-    localStorage.setItem("val",0)
+MC.addEventListener("click", () => {
+    localStorage.setItem("val", 0)
 
 })
-MS.addEventListener("click",()=>{
-    localStorage.setItem("val",display.innerHTML)
+MS.addEventListener("click", () => {
+    localStorage.setItem("val", display.innerHTML)
 
 })
 //operator 
