@@ -56,11 +56,11 @@ btn_0.addEventListener("click", () => { add(0) })
 //mode change
 deg.innerHTML = "DEG"
 deg.addEventListener("click", () => {
-    if(deg.innerHTML=="DEG")
+    if (deg.innerHTML == "DEG")
         deg.innerHTML = "RAD"
     else if (deg.innerHTML == "RAD")
         deg.innerHTML = "DEG";
-    
+
 })
 
 
@@ -82,7 +82,7 @@ exp.addEventListener("click", () => {
 
 start_braket.addEventListener("click", () => { add("(") })
 end_braket.addEventListener("click", () => { add(")") })
-
+sqroot.addEventListener("click", () => { add("√") })
 
 
 //handling localstorage
@@ -131,14 +131,21 @@ equal.addEventListener("click", () => {
         clear()
         if (equation.includes("|")) {
 
-            // let str = "4+|4-6|";
             let match = equation.match(/\|(.*?)\|/);
             let valueBetweenPipes = match[1];
             let temp = Math.abs(eval(valueBetweenPipes))
-            console.log(temp)
+            // console.log(temp)
             let temp2 = equation.replace("|" + valueBetweenPipes + "|", temp);
-            console.log(temp2)
+            // console.log(temp2)
             display.innerHTML += eval(temp2);
+        }
+        else if (equation.includes("√")) {
+            let matchvl = equation.match(/√(\d+(\.\d+)?)/);
+
+            let valueAfterSqrt = matchvl[1];
+            let ans = Math.sqrt(valueAfterSqrt)
+            display.innerHTML += (eval(equation.replace("√" + valueAfterSqrt, ans)));
+
         }
         else {
             console.log("diff")
