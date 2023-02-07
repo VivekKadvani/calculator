@@ -1,25 +1,25 @@
-const deg = document.getElementById("c_btn_deg");
-const f_e = document.getElementById("c_btn_f_e");
+/*DONE*/const deg = document.getElementById("c_btn_deg");
+/*done*/const f_e = document.getElementById("c_btn_f_e");
 /*done*/const MC = document.getElementById("c_btn_MC");
 /*done*/const MR = document.getElementById("c_btn_MR");
 /*done*/const m_plus = document.getElementById("c_btn_m_plus");
 /*done*/const m_min = document.getElementById("c_btn_m_min");
 /*done*/const MS = document.getElementById("c_btn_MS");
-const btn_2nd = document.getElementById("c_btn_2nd");
+/*done*/const btn_2nd = document.getElementById("c_btn_2nd");
 /*done*/const pie = document.getElementById("c_btn_pie");
 /*done*/const e = document.getElementById("c_btn_e");
 /*done*/const X_r_2 = document.getElementById("c_btn_x_r_2");
 /*done*/const btn_1dx = document.getElementById("c_btn_1dx");
 /*done*/const modulo = document.getElementById("c_btn_modulo");
 /*done*/const exp = document.getElementById("c_btn_exp");
-const sqroot = document.getElementById("c_btn_sqroot");
+/*done*/const sqroot = document.getElementById("c_btn_sqroot");
 /*done*/const start_braket = document.getElementById("c_btn_start_braket");
 /*done*/const end_braket = document.getElementById("c_btn_end_braket");
-const nnot = document.getElementById("c_btn_nnot");
-const x_raise_y = document.getElementById("c_btn_x_raise_y");
-const btn_10_r_x = document.getElementById("c_btn_10_r_x");
-const log = document.getElementById("c_btn_log");
-const log_ln = document.getElementById("c_btn_log_ln");
+/*done*/const factorial = document.getElementById("c_btn_nnot");
+/*done*/const x_raise_y = document.getElementById("c_btn_x_raise_y");
+/*done*/const btn_10_r_x = document.getElementById("c_btn_10_r_x");
+/*done*/const log = document.getElementById("c_btn_log");
+/*done*/const log_ln = document.getElementById("c_btn_log_ln");
 /*done*/const btn_1 = document.getElementById("c_btn_1");
 /*done*/const btn_2 = document.getElementById("c_btn_2");
 /*done*/const btn_3 = document.getElementById("c_btn_3");
@@ -54,14 +54,7 @@ btn_9.addEventListener("click", () => { add(9) })
 btn_0.addEventListener("click", () => { add(0) })
 
 //mode change
-deg.innerHTML = "DEG"
-deg.addEventListener("click", () => {
-    if (deg.innerHTML == "DEG")
-        deg.innerHTML = "RAD"
-    else if (deg.innerHTML == "RAD")
-        deg.innerHTML = "DEG";
 
-})
 
 
 //other
@@ -83,7 +76,27 @@ exp.addEventListener("click", () => {
 start_braket.addEventListener("click", () => { add("(") })
 end_braket.addEventListener("click", () => { add(")") })
 sqroot.addEventListener("click", () => { add("√") })
+x_raise_y.addEventListener("click", () => { add("**") })
 
+btn_10_r_x.addEventListener("click", () => { add("*10**") })
+log.addEventListener("click",()=>{add("log")})
+log_ln.addEventListener("click",()=>{add("ln")})
+btn_2nd.addEventListener("click",()=>{
+    // btn_2nd.style.backgroundColor="green"
+    if(btn_2nd.style.backgroundColor=="green")
+    {
+        btn_2nd.style.backgroundColor="white"
+    }
+    else if(btn_2nd.style.backgroundColor="white")
+    {
+        btn_2nd.style.backgroundColor="green"
+
+    }
+    else{
+        btn_2nd.style.backgroundColor="white"
+    }
+    // if(btn_2nd.style.color)
+})
 
 //handling localstorage
 localStorage.setItem("val", 0);
@@ -122,7 +135,34 @@ c_btn_divide.addEventListener("click", () => { add("/") })
 c_btn_C.addEventListener("click", clear)
 c_btn_clear.addEventListener("click", clear_one)
 
+//advance formula
+deg.addEventListener("click", () => {
+    let temp = display.innerHTML;
+    let eq = temp + "*180/3.14"
+    display.innerHTML = (eval(eq))
+})
+f_e.addEventListener("click", () => {
+    function toScientificNotation(num) {
+        let exponent = Math.floor(Math.log10(Math.abs(num)));
+        let mantissa = num / Math.pow(10, exponent);
+        return mantissa.toPrecision(4) + 'e' + exponent;
+    }
+    let temp = toScientificNotation(parseInt(display.innerHTML))
+    clear()
+    display.innerHTML += temp;
+})
+factorial.addEventListener("click", () => {
+    function factorial(n) {
+        if (n === 0 || n === 1) return 1;
+        return n * factorial(n - 1);
+    }
+    val = parseInt(display.innerHTML)
+    let temp = factorial(val)
+    console.log(val)
 
+    clear()
+    display.innerHTML += temp;
+})
 //equal to 
 
 equal.addEventListener("click", () => {
@@ -146,6 +186,44 @@ equal.addEventListener("click", () => {
             let ans = Math.sqrt(valueAfterSqrt)
             display.innerHTML += (eval(equation.replace("√" + valueAfterSqrt, ans)));
 
+        }
+        else if (equation.includes("log")) {
+            
+            let patternf = /^(.*?)log/;
+            let resultf = equation.match(patternf);
+            let patternb = /log(.*)/;
+            let resultb = equation.match(patternb);
+            let a = resultf[1]
+            let b = resultb[1]
+            let ans = undefined
+            if (a == "") {
+                ans = Math.log10(4)
+            }
+            else {
+                ans = (Math.log10(b) / Math.log10(a))
+
+            }
+            clear()
+            display.innerHTML=ans
+        }
+        else if (equation.includes("ln")) {
+            
+            let patternf = /^(.*?)ln/;
+            let resultf = equation.match(patternf);
+            let patternb = /ln(.*)/;
+            let resultb = equation.match(patternb);
+            let a = resultf[1]
+            let b = resultb[1]
+            let ans = undefined
+            if (a == "") {
+                ans = Math.log(4)
+            }
+            else {
+                ans = (Math.log(b) / Math.log(a))
+
+            }
+            clear()
+            display.innerHTML=ans
         }
         else {
             console.log("diff")
