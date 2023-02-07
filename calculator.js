@@ -41,6 +41,14 @@
 /*done*/const btn_clear = document.getElementById("c_btn_clear")
 /*done*/const display = document.getElementById("c_display")
 /*done*/const equal = document.getElementById("c_btn_equal")
+const sin = document.getElementById("c_btn_sin")
+const cos = document.getElementById("c_btn_cos")
+const tan = document.getElementById("c_btn_tan")
+
+const rand = document.getElementById("c_btn_rand")
+const ceil = document.getElementById("c_btn_ceil")
+const floor = document.getElementById("c_btn_floor")
+
 
 btn_1.addEventListener("click", () => { add(1) })
 btn_2.addEventListener("click", () => { add(2) })
@@ -53,9 +61,24 @@ btn_8.addEventListener("click", () => { add(8) })
 btn_9.addEventListener("click", () => { add(9) })
 btn_0.addEventListener("click", () => { add(0) })
 
-//mode change
+//trignometry 
+sin.addEventListener("click", () => { add("sin(") })
+cos.addEventListener("click", () => { add("cos(") })
+tan.addEventListener("click", () => { add("tan(") })
+//function 
+rand.addEventListener("click", () => {
+    display.innerHTML = Math.random()
+})
+ceil.addEventListener("click", () => {
+    let temp = display.innerHTML
+    console.log(temp)
+    display.innerHTML = Math.ceil(temp)
+})
+floor.addEventListener("click", () => {
+    let temp = display.innerHTML
 
-
+    display.innerHTML = Math.floor(temp)
+})
 
 //other
 c_btn_dot.addEventListener("click", () => { add(".") })
@@ -79,21 +102,19 @@ sqroot.addEventListener("click", () => { add("√") })
 x_raise_y.addEventListener("click", () => { add("**") })
 
 btn_10_r_x.addEventListener("click", () => { add("*10**") })
-log.addEventListener("click",()=>{add("log")})
-log_ln.addEventListener("click",()=>{add("ln")})
-btn_2nd.addEventListener("click",()=>{
+log.addEventListener("click", () => { add("log") })
+log_ln.addEventListener("click", () => { add("ln") })
+btn_2nd.addEventListener("click", () => {
     // btn_2nd.style.backgroundColor="green"
-    if(btn_2nd.style.backgroundColor=="green")
-    {
-        btn_2nd.style.backgroundColor="white"
+    if (btn_2nd.style.backgroundColor == "green") {
+        btn_2nd.style.backgroundColor = "white"
     }
-    else if(btn_2nd.style.backgroundColor="white")
-    {
-        btn_2nd.style.backgroundColor="green"
+    else if (btn_2nd.style.backgroundColor = "white") {
+        btn_2nd.style.backgroundColor = "green"
 
     }
-    else{
-        btn_2nd.style.backgroundColor="white"
+    else {
+        btn_2nd.style.backgroundColor = "white"
     }
     // if(btn_2nd.style.color)
 })
@@ -188,7 +209,7 @@ equal.addEventListener("click", () => {
 
         }
         else if (equation.includes("log")) {
-            
+
             let patternf = /^(.*?)log/;
             let resultf = equation.match(patternf);
             let patternb = /log(.*)/;
@@ -204,26 +225,52 @@ equal.addEventListener("click", () => {
 
             }
             clear()
-            display.innerHTML=ans
+            display.innerHTML = ans
         }
         else if (equation.includes("ln")) {
-            
+
             let patternf = /^(.*?)ln/;
             let resultf = equation.match(patternf);
-            let patternb = /ln(.*)/;
+            let patternb = /ln\s*(\d+(\.\d+)?)\s*(?=[+\-\*\/])/;
             let resultb = equation.match(patternb);
             let a = resultf[1]
             let b = resultb[1]
-            let ans = undefined
-            if (a == "") {
-                ans = Math.log(4)
-            }
-            else {
-                ans = (Math.log(b) / Math.log(a))
+            let temp2, ans = undefined
+            ans = Math.log(b)
+            temp2 = eval(equation.replace("ln" + b + "", ans))
+            // if (a == "") {
+            //     ans = Math.log(b)
+            //      temp2 = eval(equation.replace("ln" + b, ans))
+            // }
+            // else {
+            //     ans = (Math.log(b) / Math.log(a))
+            //     temp2 = eval(equation.replace(a + "ln" + b, ans))
 
-            }
+            // }
+
             clear()
-            display.innerHTML=ans
+            display.innerHTML = temp2
+        }
+        else if (equation.includes("sin")) {
+            let match = equation.match(/sin\((.*?)\)/);
+            let valueBetweenPipes = match[1];
+            let temp = Math.sin(valueBetweenPipes)
+            let temp2 = equation.replace("sin(" + valueBetweenPipes + ")", temp);
+            display.innerHTML += eval(temp2);
+        }
+        else if (equation.includes("cos")) {
+            let match = equation.match(/cos\((.*?)\)/);
+            let valueBetweenPipes = match[1];
+            let temp = Math.cos(valueBetweenPipes)
+            let temp2 = equation.replace("cos(" + valueBetweenPipes + ")", temp);
+            display.innerHTML += eval(temp2);
+        }
+        else if (equation.includes("tan")) {
+            let match = equation.match(/tan\((.*?)\)/);
+            let valueBetweenPipes = match[1];
+            let temp = Math.tan(valueBetweenPipes)
+            let temp2 = equation.replace("tan(" + valueBetweenPipes + ")", temp);
+            display.innerHTML += eval(temp2);
         }
         else {
             console.log("diff")
@@ -238,6 +285,7 @@ equal.addEventListener("click", () => {
 
 function add(n) {
     display.innerHTML += n;
+    
 }
 
 
