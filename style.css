@@ -1,5 +1,4 @@
-#out_div {
-}
+#out_div {}
 
 #table tr td {
     width: 3.5rem;
@@ -12,6 +11,8 @@
 #table {
     border-spacing: 3px;
     background-color: rgb(235, 235, 235);
+    border-radius: 15px;
+    filter: drop-shadow(0 0 5px rgb(202, 47, 47));
 }
 
 .c_btn {
@@ -24,12 +25,13 @@
 .c_btn:hover {
     background-color: rgb(189, 189, 189);
 }
+
 #table #c_display {
     height: 5rem;
     background-color: white;
-    
+
 }
-#c_display{
-    border-color: black;
-    border: 1px;
+
+#c_display {
+    filter: drop-shadow(0 0 0.75px rgb(17, 17, 17));
 }

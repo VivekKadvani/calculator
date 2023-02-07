@@ -48,7 +48,26 @@ const tan = document.getElementById("c_btn_tan")
 const rand = document.getElementById("c_btn_rand")
 const ceil = document.getElementById("c_btn_ceil")
 const floor = document.getElementById("c_btn_floor")
+const power = document.getElementById("c_btn_f_power")
+power.style.backgroundColor = "red"
+power.addEventListener("click", () => {
+    // btn_2nd.style.backgroundColor="green"
+    if (power.style.backgroundColor == "green") {
+        power.style.backgroundColor = "red"
+        table.style = "filter: drop-shadow(0 0 5px red);"
+    }
+    else if (power.style.backgroundColor = "red") {
+        power.style.backgroundColor = "green"
+        table.style = "filter: drop-shadow(0 0 5px green);"
 
+    }
+    else {
+        power.style.backgroundColor = "red"
+        table.style = "filter: drop-shadow(0 0 5px red);"
+
+    }
+    // if(btn_2nd.style.color)
+})
 
 btn_1.addEventListener("click", () => { add(1) })
 btn_2.addEventListener("click", () => { add(2) })
@@ -285,7 +304,7 @@ equal.addEventListener("click", () => {
 
 function add(n) {
     display.innerHTML += n;
-    
+
 }
 
 
